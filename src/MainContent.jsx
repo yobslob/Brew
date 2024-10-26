@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import './mainContent.css';
+import './MainContent.css';
 
 const MainContent = () => {
     const [articles, setArticles] = useState({

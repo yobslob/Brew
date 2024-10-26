@@ -93,6 +93,7 @@ app.delete('/api/blogs/:id', async (req, res) => {
 
 // Route to handle user registration
 app.post('/register', async (req, res) => {
+    console.log('Received registration data:', req.body);
     const { name, username, email, password } = req.body;
     const newUser = new User({
         name,
@@ -109,7 +110,8 @@ app.post('/register', async (req, res) => {
         });
     } catch (error) {
         console.error('Error saving user:', error);
-        res.status(500).json({ message: 'Error registering user', error });
+        // Make sure to send a valid JSON response
+        res.status(500).json({ message: 'Error registering user', error: error.message });
     }
 });
 

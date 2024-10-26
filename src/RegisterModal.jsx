@@ -21,7 +21,7 @@ function RegisterModal({ closeModal }) {
         };
 
         // Get the backend URL from environment variables
-        const backendUrl = process.env.FRONTEND_URL;
+        const backendUrl = process.env.REACT_APP_FRONTEND_URL;
         console.log(backendUrl);
         try {
             // Send a POST request to the backend

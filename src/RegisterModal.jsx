@@ -20,9 +20,12 @@ function RegisterModal({ closeModal }) {
             password
         };
 
+        // Get the backend URL from environment variables
+        const backendUrl = process.env.FRONTEND_URL || 'http://localhost:3000';
+
         try {
             // Send a POST request to the backend
-            const response = await fetch('http://localhost:3000/register', {
+            const response = await fetch(`${backendUrl}/register`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

@@ -1,21 +1,23 @@
+// Import necessary modules
 import express from 'express';
 import bodyParser from 'body-parser';
 import mongoose from 'mongoose';
-import Blog from './models/blogsch.mjs';
-import User from './models/usersch.mjs';
+import Blog from './models/blogsch.mjs'; // Import the Blog model as an ES module
+import User from './models/usersch.mjs'; // Import the User model as an ES module
 import cors from 'cors';
 
 const app = express();
-const port = 3000;
 
+// Set the view engine to EJS
 app.set('view engine', 'ejs');
 
+// Serve static files from the public directory
 app.use(express.static('public'));
 
-// Middleware
+// Middleware to parse form data
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(bodyParser.json());
-app.use(cors());
+app.use(bodyParser.json()); // Parse JSON data for API routes
+app.use(cors()); // Enable CORS for communication with frontend
 
 // MongoDB connection
 const mongoURI = 'mongodb+srv://yogeshxiix:hr16p1076@cluster0.jv4zk.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
@@ -26,9 +28,9 @@ mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
 
 // Route to render the EJS page
 app.get('/write', (req, res) => {
-    const author = req.query.author || '';
+    const author = req.query.author || ''; // Get the author's name from the query parameters
     console.log('Author from query:', author);
-    res.render('writeBlog', { author });
+    res.render('writeBlog', { author }); // Pass the author name to the EJS template
 });
 
 // New route to fetch all blogs categorized by tags
@@ -51,17 +53,17 @@ app.get('/api/blogs', async (req, res) => {
 
 // Route to handle blog form submission
 app.post('/submit-blog', async (req, res) => {
-    const { title, content, author } = req.body;
+    const { title, content, author } = req.body; // Ensure the author is passed in the form
     const newBlog = new Blog({
         title,
         content,
         author,
-        date: new Date()
+        date: new Date() // Set the current date
     });
 
     try {
-        await newBlog.save();
-        res.redirect('http://localhost:5173/app'); // Redirect to the appropriate route in your React app after successful submission
+        await newBlog.save(); // Save the new blog to the database
+        res.redirect('https://brew-neon.vercel.app/app'); // Redirect to the appropriate route in your React app after successful submission
     } catch (error) {
         console.error('Error saving blog:', error);
         res.status(500).send('Failed to submit blog post');
@@ -95,8 +97,7 @@ app.post('/register', async (req, res) => {
     });
 
     try {
-        const savedUser = await newUser.save();
-
+        const savedUser = await newUser.save(); // Save the user to the database
         res.status(201).json({
             message: 'User registered successfully',
             user: savedUser,
@@ -128,7 +129,5 @@ app.post('/login', async (req, res) => {
     }
 });
 
-// Start the server
-app.listen(port, () => {
-    console.log(`Server listening at http://localhost:${port}`);
-});
+// Export the app for serverless deployment
+export default app;

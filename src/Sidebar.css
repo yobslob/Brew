@@ -1,0 +1,44 @@
+/* Sidebar.css */
+
+.sidebar {
+    width: 350px;
+    padding: 1rem;
+    background-color: #fff;
+    border-radius: 10px;
+    position: sticky; /* Keeps sidebar fixed when scrolling */
+    top: 0;
+    right: 0;
+    margin-left: auto;
+    height: 100vh; /* Full height of the viewport */
+  }
+  
+  .recommended-section {
+    margin-bottom: 2rem;
+  }
+  
+  .recommended-section h3 {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+    color: #333;
+  }
+  
+  .recommended-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+  
+  .recommended-section li {
+    margin-bottom: 1rem;
+  }
+  
+  .recommended-section li a {
+    text-decoration: none;
+    color: #00ab6b;
+    font-size: 1rem;
+  }
+  
+  .recommended-section li a:hover {
+    text-decoration: underline;
+  }
+  

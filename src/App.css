@@ -1,0 +1,32 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+#root {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+.app {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.content-wrapper {
+  display: flex;
+  justify-content: space-between;
+  flex-grow: 1;
+  padding: 0 8rem;
+  margin: 2rem;
+  background-color: transparent;
+  overflow: hidden;
+}
+
+.content-wrapper::-webkit-scrollbar {
+  display: none;
+}

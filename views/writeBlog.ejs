@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Your Blog</title>
+    <link rel="stylesheet" href="/writeBlog.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Brew</h1>
+        </header>
+        <form class="blog-form" method="POST" action="/submit-blog"> 
+            <input type="text" id="title" name="title" placeholder="Title" required>
+            <textarea id="content" name="content" rows="10" placeholder="Type..." required></textarea>
+            <label for="author" class="author-label">Author : </label><input type="text" id="author" name="author" value="<%= author %>"> 
+            <div class="button-group">
+                <button type="submit" class="button publish">Publish</button>
+                <button type="button" class="button cancel" onclick="window.history.back()">Cancel</button>
+            </div>
+        </form>
+        <footer>
+            <p>© 2024 Brew</p>
+        </footer>
+    </div>
+</body>
+</html>

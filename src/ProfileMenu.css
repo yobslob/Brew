@@ -1,0 +1,44 @@
+@keyframes slideIn {
+  from {
+    transform: translateX(100%);
+  }
+  to {
+    transform: translateX(0%);
+  }
+}
+
+.profile-modal {
+    position: fixed;
+    top: 50px; /* Position below the header */
+    right: 10px; /* Margin from the right edge */
+    width: 240px; /* Adjusted width */
+    height: 65vh; /* Set height to half the viewport height minus header height */
+    background-color: #fff;
+    border: 1px solid #ddd;
+    padding: 10px; /* Reduced padding */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px; /* Rounded corners */
+    z-index: 1000; /* Ensure it appears above other elements */
+    overflow: hidden; /* Prevent scrolling */
+    text-align: left; /* Align text to the left */
+    animation: slideIn 0.3s forwards;
+}
+
+/* Optional: Style for the menu items */
+.menu-item {
+    padding: 4px 8px; /* Further reduced padding for menu items */
+    cursor: pointer; /* Change cursor to pointer on hover */
+    font-size: 14px; /* Reduced font size */
+    color: #313131;
+    text-align: left; /* Ensure menu items are left-aligned */
+}
+/* Optional: Style for menu sections */
+.menu-section {
+    margin: 10px 3px; /* Space between sections */
+}
+
+.divider {
+    height: 0.3px; /* Divider height */
+    background-color: #ddd; /* Divider color */
+    margin: 5px 0; /* Margin for spacing */
+}

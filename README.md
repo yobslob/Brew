@@ -5,7 +5,7 @@ Basically, It comprises of a MERN stack web project.
 <h2>About</h2>
 <p>This is a mock project for the shortlisting of SDC club prospects. It is a clean, user-friendly blogging website's interface focusing on intuitive navigation. I have added cloud registering, therefore you can register and login from your system.</p>
 
-P.S. I'm still working on making it responsive.<br><br>
+P.S. I'm still working on making it responsive and rendering it remotely.<br><br>
 Here's a preview to the home page :<br>
 ![Project Screenshot](src/assets/loginPage.png)
 <h2>Tech Stack</h2>
@@ -47,5 +47,3 @@ npm run dev
 ```console
 nodemon server.mjs
 ```
-
-Although you can render it on https://brew-neon.vercel.app/

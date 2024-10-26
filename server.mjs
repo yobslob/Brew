@@ -68,7 +68,7 @@ app.post('/submit-blog', async (req, res) => {
     try {
         await newBlog.save(); // Save the new blog to the database
         // Use environment-based URL for redirecting
-        res.redirect(`${process.env.REACT_APP_FRONTEND_URL}`);
+        res.redirect('https://brew-ows3.onrender.com');
     } catch (error) {
         console.error('Error saving blog:', error);
         res.status(500).send('Failed to submit blog post');

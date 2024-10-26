@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import './Header.css';
+import './header.css';
 import brewLogo from './assets/brew.png';
 import profileIcon from './assets/pfp.jpg';
 import notificationIcon from './assets/notif.jpg';

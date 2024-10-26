@@ -18,7 +18,7 @@ function LoginModal({ closeModal }) {
 
     try {
       // Use the backend URL from environment variable
-      const response = await fetch(`${process.env.REACT_APP_FRONTEND_URL}/login`, {
+      const response = await fetch('https://brew-ows3.onrender.com/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

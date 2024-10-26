@@ -20,12 +20,9 @@ function RegisterModal({ closeModal }) {
             password
         };
 
-        // Get the backend URL from environment variables
-        const backendUrl = 'https://brew-ows3.onrender.com';
-        console.log(backendUrl);
         try {
             // Send a POST request to the backend
-            const response = await fetch(`${backendUrl}/register`, {
+            const response = await fetch('http://localhost:3000/register', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',

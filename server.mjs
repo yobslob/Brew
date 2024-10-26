@@ -7,12 +7,7 @@ import User from './models/usersch.mjs'; // Import the User model as an ES modul
 import cors from 'cors';
 
 const app = express();
-
-// Set dynamic port for deployment (Render provides process.env.PORT)
-const port = process.env.PORT || 3000;
-
-// Use environment variable for MongoDB URI
-const mongoURI = process.env.MONGO_URI || 'mongodb+srv://yogeshxiix:hr16p1076@cluster0.jv4zk.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
+const port = 3000;
 
 // Set the view engine to EJS
 app.set('view engine', 'ejs');
@@ -26,6 +21,8 @@ app.use(bodyParser.json()); // Parse JSON data for API routes
 app.use(cors()); // Enable CORS for communication with frontend
 
 // MongoDB connection
+const mongoURI = 'mongodb+srv://yogeshxiix:hr16p1076@cluster0.jv4zk.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0';
+
 mongoose.connect(mongoURI, { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log('MongoDB connected'))
     .catch(err => console.log('MongoDB connection error:', err));
@@ -67,14 +64,12 @@ app.post('/submit-blog', async (req, res) => {
 
     try {
         await newBlog.save(); // Save the new blog to the database
-        // Use environment-based URL for redirecting
-        res.redirect('https://brew-ows3.onrender.com');
+        res.redirect('http://localhost:5173/app'); // Redirect to the appropriate route in your React app after successful submission
     } catch (error) {
         console.error('Error saving blog:', error);
         res.status(500).send('Failed to submit blog post');
     }
 });
-
 // Route to delete a blog by ID
 app.delete('/api/blogs/:id', async (req, res) => {
     const { id } = req.params;
@@ -91,9 +86,9 @@ app.delete('/api/blogs/:id', async (req, res) => {
     }
 });
 
-// Route to handle user registration
+
+// Route to handle user registration (for RegisterModal)
 app.post('/register', async (req, res) => {
-    console.log('Received registration data:', req.body);
     const { name, username, email, password } = req.body;
     const newUser = new User({
         name,
@@ -103,15 +98,15 @@ app.post('/register', async (req, res) => {
     });
 
     try {
-        const savedUser = await newUser.save();
+        const savedUser = await newUser.save(); // Save the user to the database
+        // Send success response
         res.status(201).json({
             message: 'User registered successfully',
             user: savedUser,
         });
     } catch (error) {
         console.error('Error saving user:', error);
-        // Make sure to send a valid JSON response
-        res.status(500).json({ message: 'Error registering user', error: error.message });
+        res.status(500).json({ message: 'Error registering user', error });
     }
 });
 
@@ -120,15 +115,20 @@ app.post('/login', async (req, res) => {
     const { email, password } = req.body;
 
     try {
+        // Find the user by email
         const user = await User.findOne({ email });
         if (!user) {
+            // Email not found
             return res.status(404).json({ message: 'User does not exist' });
         }
 
+        // Check if the password matches
         if (user.password !== password) {
+            // Password incorrect
             return res.status(401).json({ message: 'Invalid password' });
         }
 
+        // Successful login
         res.status(200).json({ user: { email: user.email, name: user.name } });
     } catch (error) {
         console.error("Error during login:", error);

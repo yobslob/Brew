@@ -17,8 +17,7 @@ function LoginModal({ closeModal }) {
     };
 
     try {
-      // Use the backend URL from environment variable
-      const response = await fetch('https://brew-ows3.onrender.com/login', {
+      const response = await fetch('http://localhost:3000/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
